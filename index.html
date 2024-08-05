@@ -31,7 +31,7 @@
     <option value=9>9</option>
     <option value=10>10</option>
 </select>
-<div id="healthResult"></div>
+<div id="healthBoostResultDiv"></div>
 <label for="attackLvl">Attack Boost III Level</label>
 <select name="attackLvl" id="attackLvl">
     <option value=1>1</option>
@@ -45,7 +45,7 @@
     <option value=9>9</option>
     <option value=10>10</option>
 </select>
-<div id="attackResult"></div>
+<div id="attackBoostResultDiv"></div>
 <label for="defenseLvl">Defense Boost III Level</label>
 <select name="defenseLvl" id="defenseLvl">
     <option value=1>1</option>
@@ -59,8 +59,8 @@
     <option value=9>9</option>
     <option value=10>10</option>
 </select>
-<div id="defenseResult"></div>
-<div id="totalRemaining"></div>
+<div id="defenseBoostResultDiv"></div>
+<div id="totalRemainingDiv"></div>
 
 
     <script>
@@ -78,30 +78,42 @@
         const hLvl = document.getElementById('healthLvl');
         const aLvl = document.getElementById('attackLvl');
         const dLvl = document.getElementById('defenseLvl');
+        const protVal = 0;
+        const healthVal = 0;
+        const attackVal = 0;
+        const defenseVal = 0;
 
         const protResultDiv = document.getElementById('advProtResult');
+        const healthResultDiv = document.getElementById('healthBoostResultDiv');
+        const attackResultDiv = document.getElementById('attackBoostResultDiv');
+        const defenseResultDiv = document.getElementById('defenseBoostResultDiv');
+        const totalDiv = document.getElementById('totalRemainingDiv');
 
         advProtLvl.addEventListener('change', (event) => {
-            const protVal = sumRange(advancedProtectionGold, event.target.value, advancedProtectionGold.length-1);
+            protVal = sumRange(advancedProtectionGold, event.target.value, advancedProtectionGold.length-1);
             protResultDiv.textContent = protVal;
+            totalDiv.textContent = healthVal + protVal + attackVal + defenseVal + tierTenGold
             console.log(protVal);
         });
 
         hLvl.addEventListener('change', (event) => {
-            const healthVal = sumRange(boostThreeGold, event.target.value, boostThreeGold.length-1);
-            healthResult.textContent = healthVal;
+            healthVal = sumRange(boostThreeGold, event.target.value, boostThreeGold.length-1);
+            healthResultDiv.textContent = healthVal;
+            totalDiv.textContent = healthVal + protVal + attackVal + defenseVal + tierTenGold
             console.log(healthVal);
         });
 
         aLvl.addEventListener('change', (event) => {
-            const attackVal = sumRange(boostThreeGold, event.target.value, boostThreeGold.length-1);
-            attackResult.textContent = attackVal;
+            attackVal = sumRange(boostThreeGold, event.target.value, boostThreeGold.length-1);
+            attackResultDiv.textContent = attackVal;
+            totalDiv.textContent = healthVal + protVal + attackVal + defenseVal + tierTenGold
             console.log(attackVal);
         });
 
         dLvl.addEventListener('change', (event) => {
-            const defenseVal = sumRange(boostThreeGold, event.target.value, boostThreeGold.length-1);
-            defenseResult.textContent = defenseVal;
+            defenseVal = sumRange(boostThreeGold, event.target.value, boostThreeGold.length-1);
+            defenseResultDiv.textContent = defenseVal;
+            totalDiv.textContent = healthVal + protVal + attackVal + defenseVal + tierTenGold
             console.log(defenseVal);
         });
 
