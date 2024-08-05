@@ -6,6 +6,7 @@
 <body>
     <label for="adv-prot-lvl">Advanced Protection Level</label>
 <select name="adv-prot-lvl" id="adv-prot-lvl">
+    <option value=0>0</option>
     <option value=1>1</option>
     <option value=2>2</option>
     <option value=3>3</option>
@@ -20,6 +21,7 @@
 <div id="advProtResult"></div>
 <label for="healthLvl">Health Boost III Level</label>
 <select name="healthLvl" id="healthLvl">
+    <option value=0>0</option>
     <option value=1>1</option>
     <option value=2>2</option>
     <option value=3>3</option>
@@ -34,6 +36,7 @@
 <div id="healthBoostResultDiv"></div>
 <label for="attackLvl">Attack Boost III Level</label>
 <select name="attackLvl" id="attackLvl">
+    <option value=0>0</option>
     <option value=1>1</option>
     <option value=2>2</option>
     <option value=3>3</option>
@@ -48,6 +51,7 @@
 <div id="attackBoostResultDiv"></div>
 <label for="defenseLvl">Defense Boost III Level</label>
 <select name="defenseLvl" id="defenseLvl">
+    <option value=0>0</option>
     <option value=1>1</option>
     <option value=2>2</option>
     <option value=3>3</option>
@@ -70,8 +74,12 @@
             0,0,0,157,157,219,219,285,285,400
         ];
 
+        const advancedProtectionValor = [
+            0
+        ];
+
         const boostThreeGold = [
-            92,157,157,219,219,285,285,400,400,560
+            0,92,157,157,219,219,285,285,400,400,560
         ];
 
         const tierTenGold = 530;
