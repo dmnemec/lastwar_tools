@@ -20,6 +20,7 @@ body {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr 1fr; /* Adjust row heights as needed */
     gap: 10px; /* Optional: adds spacing between grid items */
+    max-width: 700px;
   }
   
   .apNode {
