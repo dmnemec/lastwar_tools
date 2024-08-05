@@ -116,7 +116,7 @@
         advProtLvl.addEventListener('change', (event) => {
             protGold = sumRange(advancedProtectionGold, event.target.value, advancedProtectionGold.length-1);
             protVal = sumRange(advancedProtectionValor, event.target.value, advancedProtectionValor.length-1);
-            protGoldResultDiv.textContent = protGold;
+            protGoldResultDiv.textContent = protGold.toLocaleString();
             let totalGoldNum = healthGold + protGold + attackGold + defenseGold + tierTenGold;
             totalGoldDiv.textContent = totalGoldNum.toLocaleString();
             let totalValorNum = healthVal + protVal + attackVal + defenseVal + tierTenValor;
@@ -127,7 +127,7 @@
         hLvl.addEventListener('change', (event) => {
             healthGold = sumRange(boostThreeGold, event.target.value, boostThreeGold.length-1);
             healthVal = sumRange(boostThreeValor, event.target.value, boostThreeValor.length-1);
-            healthGoldResultDiv.textContent = healthGold;
+            healthGoldResultDiv.textContent = healthGold.toLocaleString();
             let totalGoldNum = healthGold + protGold + attackGold + defenseGold + tierTenGold;
             totalGoldDiv.textContent = totalGoldNum.toLocaleString();
             let totalValorNum = healthVal + protVal + attackVal + defenseVal + tierTenValor;
@@ -138,7 +138,7 @@
         aLvl.addEventListener('change', (event) => {
             attackGold = sumRange(boostThreeGold, event.target.value, boostThreeGold.length-1);
             attackVal = sumRange(boostThreeValor, event.target.value, boostThreeValor.length-1);
-            attackGoldResultDiv.textContent = attackVal;
+            attackGoldResultDiv.textContent = attackGold.toLocaleString();
             let totalGoldNum = healthGold + protGold + attackGold + defenseGold + tierTenGold;
             totalGoldDiv.textContent = totalGoldNum.toLocaleString();
             let totalValorNum = healthVal + protVal + attackVal + defenseVal + tierTenValor;
@@ -149,7 +149,7 @@
         dLvl.addEventListener('change', (event) => {
             defenseGold = sumRange(boostThreeGold, event.target.value, boostThreeGold.length-1);
             defenseVal = sumRange(boostThreeValor, event.target.value, boostThreeValor.length-1);
-            defenseGoldResultDiv.textContent = defenseVal;
+            defenseGoldResultDiv.textContent = defenseGold.toLocaleString();
             let totalGoldNum = healthGold + protGold + attackGold + defenseGold + tierTenGold;
             totalGoldDiv.textContent = totalGoldNum.toLocaleString();
             let totalValorNum = healthVal + protVal + attackVal + defenseVal + tierTenValor;
