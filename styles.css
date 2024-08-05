@@ -18,7 +18,7 @@ body {
   .tech-tree {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr 2fr; /* Adjust row heights as needed */
+    grid-template-rows: 1fr 1fr; /* Adjust row heights as needed */
     gap: 10px; /* Optional: adds spacing between grid items */
   }
   
