@@ -7,16 +7,16 @@ HTML
 <body>
     <label for="adv-prot-lvl">Advanced Protection Level</label>
 <select name="adv-prot-lvl" id="adv-prot-lvl">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-    <option value="6">6</option>
-    <option value="7">7</option>
-    <option value="8">8</option>
-    <option value="9">9</option>
-    <option value="10">10</option>
+    <option value=1>1</option>
+    <option value=2>2</option>
+    <option value=3>3</option>
+    <option value=4>4</option>
+    <option value=5>5</option>
+    <option value=6>6</option>
+    <option value=7>7</option>
+    <option value=8>8</option>
+    <option value=9>9</option>
+    <option value=10>10</option>
 </select>
 
 <div id="result"></div>
@@ -36,8 +36,8 @@ HTML
 
         const resultDiv = document.getElementById('result');
 
-        advProtLvl.addEventListener('change', () => {
-            const protVal = sumRange(advancedProtectionGold, 9);
+        advProtLvl.addEventListener('change', (event) => {
+            const protVal = sumRange(advancedProtectionGold, event.target.value, 9);
             resultDiv.textContent = protVal;
         });
         console.log(protVal)
