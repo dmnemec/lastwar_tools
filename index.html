@@ -114,6 +114,29 @@
         const totalGoldDiv = document.getElementById('totalGoldRemainingDiv');
         const totalValorDiv = document.getElementById('totalValorRemainingDiv');
 
+        document.addEventListener('DOMContentLoaded', () => {
+            protGold = sumRange(advancedProtectionGold, advProtLvl.value, advancedProtectionGold.length-1);
+            protVal = sumRange(advancedProtectionValor, advProtLvl.value, advancedProtectionValor.length-1);
+            protGoldResultDiv.textContent = protGold.toLocaleString();
+
+            healthGold = sumRange(boostThreeGold, hLvl.value, boostThreeGold.length-1);
+            healthVal = sumRange(boostThreeValor, hLvl.value, boostThreeValor.length-1);
+            healthGoldResultDiv.textContent = healthGold.toLocaleString();
+
+            attackGold = sumRange(boostThreeGold, aLvl.value, boostThreeGold.length-1);
+            attackVal = sumRange(boostThreeValor, aLvl.value, boostThreeValor.length-1);
+            attackGoldResultDiv.textContent = attackGold.toLocaleString();
+            
+            defenseGold = sumRange(boostThreeGold, dLvl.value, boostThreeGold.length-1);
+            defenseVal = sumRange(boostThreeValor, dLvl.value, boostThreeValor.length-1);
+            defenseGoldResultDiv.textContent = defenseGold.toLocaleString();
+
+            let totalGoldNum = healthGold + protGold + attackGold + defenseGold + tierTenGold;
+            totalGoldDiv.textContent = totalGoldNum.toLocaleString();
+            let totalValorNum = healthVal + protVal + attackVal + defenseVal + tierTenValor;
+            totalValorDiv.textContent = totalValorNum.toLocaleString();
+        });
+
         advProtLvl.addEventListener('change', (event) => {
             protGold = sumRange(advancedProtectionGold, event.target.value, advancedProtectionGold.length-1);
             protVal = sumRange(advancedProtectionValor, event.target.value, advancedProtectionValor.length-1);
