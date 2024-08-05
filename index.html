@@ -66,7 +66,11 @@
 <div id="defenseBoostResultDiv"></div>
 <br>
 <p>Total amount of gold still needed for tier 10 troop research, in millions</p>
-<div id="totalRemainingDiv"></div>
+<div id="totalGoldRemainingDiv"></div>
+<br>
+<p>Total amount of valor still needed for tier 10 troop research</p>
+<div id="totalValorRemainingDiv"></div>
+
 
 
     <script>
@@ -75,55 +79,73 @@
         ];
 
         const advancedProtectionValor = [
-            0
+            0,1280,1440,1440,1600,1600,1800,1800,2000,2000,2000
         ];
 
         const boostThreeGold = [
-            0,92,157,157,219,219,285,285,400,400,560
+            0,92.3,157,157,219,219,285,285,400,400,560
+        ];
+
+        const boostThreeValor = [
+            0,1440,1600,1600,1800,1800,2000,2000,2200,2200,2400
         ];
 
         const tierTenGold = 530;
+        const tierTenValor = 2400
 
         const advProtLvl = document.getElementById('adv-prot-lvl');
         const hLvl = document.getElementById('healthLvl');
         const aLvl = document.getElementById('attackLvl');
         const dLvl = document.getElementById('defenseLvl');
         let protVal = 0;
+        let protGold = 0;
         let healthVal = 0;
+        let healthGold = 0
         let attackVal = 0;
+        let attackGold = 0;
         let defenseVal = 0;
+        let defenseGold = 0;
 
-        const protResultDiv = document.getElementById('advProtResult');
-        const healthResultDiv = document.getElementById('healthBoostResultDiv');
-        const attackResultDiv = document.getElementById('attackBoostResultDiv');
-        const defenseResultDiv = document.getElementById('defenseBoostResultDiv');
-        const totalDiv = document.getElementById('totalRemainingDiv');
+        const protGoldResultDiv = document.getElementById('advProtResult');
+        const healthGoldResultDiv = document.getElementById('healthBoostResultDiv');
+        const attackGoldResultDiv = document.getElementById('attackBoostResultDiv');
+        const defenseGoldResultDiv = document.getElementById('defenseBoostResultDiv');
+        const totalGoldDiv = document.getElementById('totalGoldRemainingDiv');
+        const totalValorDiv = document.getElementById('totalValorRemainingDiv');
 
         advProtLvl.addEventListener('change', (event) => {
-            protVal = sumRange(advancedProtectionGold, event.target.value, advancedProtectionGold.length-1);
-            protResultDiv.textContent = protVal;
-            totalDiv.textContent = healthVal + protVal + attackVal + defenseVal + tierTenGold
-            console.log(protVal);
+            protGold = sumRange(advancedProtectionGold, event.target.value, advancedProtectionGold.length-1);
+            protVal = sumRange(advancedProtectionValor, event.target.value, advancedProtectionValor.length-1);
+            protGoldResultDiv.textContent = protGold;
+            totalGoldDiv.textContent = healthGold + protGold + attackGold + defenseGold + tierTenGold;
+            totalValorDiv.textContent = healthVal + protVal + attackVal + defenseVal + tierTenValor;
+            console.log(protGold);
         });
 
         hLvl.addEventListener('change', (event) => {
-            healthVal = sumRange(boostThreeGold, event.target.value, boostThreeGold.length-1);
-            healthResultDiv.textContent = healthVal;
-            totalDiv.textContent = healthVal + protVal + attackVal + defenseVal + tierTenGold
-            console.log(healthVal);
+            healthGold = sumRange(boostThreeGold, event.target.value, boostThreeGold.length-1);
+            healthVal = sumRange(boostThreeValor, event.target.value, boostThreeValor.length-1);
+            healthGoldResultDiv.textContent = healthGold;
+            totalGoldDiv.textContent = healthGold + protGold + attackGold + defenseGold + tierTenGold;
+            totalValorDiv.textContent = healthVal + protVal + attackVal + defenseVal + tierTenValor;
+            console.log(healthGold);
         });
 
         aLvl.addEventListener('change', (event) => {
-            attackVal = sumRange(boostThreeGold, event.target.value, boostThreeGold.length-1);
-            attackResultDiv.textContent = attackVal;
-            totalDiv.textContent = healthVal + protVal + attackVal + defenseVal + tierTenGold
+            attackGold = sumRange(boostThreeGold, event.target.value, boostThreeGold.length-1);
+            attackVal = sumRange(boostThreeValor, event.target.value, boostThreeValor.length-1);
+            attackGoldResultDiv.textContent = attackVal;
+            totalGoldDiv.textContent = healthGold + protGold + attackGold + defenseGold + tierTenGold;
+            totalValorDiv.textContent = healthVal + protVal + attackVal + defenseVal + tierTenValor;
             console.log(attackVal);
         });
 
         dLvl.addEventListener('change', (event) => {
-            defenseVal = sumRange(boostThreeGold, event.target.value, boostThreeGold.length-1);
-            defenseResultDiv.textContent = defenseVal;
-            totalDiv.textContent = healthVal + protVal + attackVal + defenseVal + tierTenGold
+            defenseGold = sumRange(boostThreeGold, event.target.value, boostThreeGold.length-1);
+            defenseVal = sumRange(boostThreeValor, event.target.value, boostThreeValor.length-1);
+            defenseGoldResultDiv.textContent = defenseVal;
+            totalGoldDiv.textContent = healthGold + protGold + attackGold + defenseGold + tierTenGold
+            totalValorDiv.textContent = healthVal + protVal + attackVal + defenseVal + tierTenValor
             console.log(defenseVal);
         });
 
