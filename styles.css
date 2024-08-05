@@ -40,3 +40,8 @@ body {
     grid-column: 3 / 4;
     grid-row: 2 / 3;
   }
+
+  .tech-node {
+    border: 3px solid darkblue;
+    color: rgb(26, 93, 155);
+  }
