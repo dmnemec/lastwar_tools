@@ -45,3 +45,8 @@ body {
     border: 3px solid darkblue;
     color: rgb(26, 93, 155);
   }
+
+  .select-div {
+    display: flex;
+    justify-content: center;
+  }
