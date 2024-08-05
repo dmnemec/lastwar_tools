@@ -79,15 +79,15 @@
         ];
 
         const advancedProtectionValor = [
-            0,1280,1440,1440,1600,1600,1800,1800,2000,2000,2000
+            1280,1440,1440,1600,1600,1800,1800,2000,2000,2000
         ];
 
         const boostThreeGold = [
-            0,92300000,157000000,157000000,219000000,219000000,285000000,285000000,400000000,400000000,560000000
+            92300000,157000000,157000000,219000000,219000000,285000000,285000000,400000000,400000000,560000000
         ];
 
         const boostThreeValor = [
-            0,1440,1600,1600,1800,1800,2000,2000,2200,2200,2400
+            1440,1600,1600,1800,1800,2000,2000,2200,2200,2400
         ];
 
         const tierTenGold = 530000000;
@@ -121,7 +121,8 @@
             totalGoldDiv.textContent = totalGoldNum.toLocaleString();
             let totalValorNum = healthVal + protVal + attackVal + defenseVal + tierTenValor;
             totalValorDiv.textContent = totalValorNum.toLocaleString();
-            console.log(protGold);
+            console.log("Protection Gold: ", protGold);
+            console.log("Protection Valor: ", protVal);
         });
 
         hLvl.addEventListener('change', (event) => {
@@ -132,7 +133,8 @@
             totalGoldDiv.textContent = totalGoldNum.toLocaleString();
             let totalValorNum = healthVal + protVal + attackVal + defenseVal + tierTenValor;
             totalValorDiv.textContent = totalValorNum.toLocaleString();
-            console.log(healthGold);
+            console.log("Health Gold: ", healthGold);
+            console.log("Health Valor: ", healthGold);
         });
 
         aLvl.addEventListener('change', (event) => {
@@ -143,7 +145,8 @@
             totalGoldDiv.textContent = totalGoldNum.toLocaleString();
             let totalValorNum = healthVal + protVal + attackVal + defenseVal + tierTenValor;
             totalValorDiv.textContent = totalValorNum.toLocaleString();
-            console.log(attackVal);
+            console.log("Attack Gold: ", attackGold);
+            console.log("Attack Valor: ", attackVal);
         });
 
         dLvl.addEventListener('change', (event) => {
@@ -154,7 +157,8 @@
             totalGoldDiv.textContent = totalGoldNum.toLocaleString();
             let totalValorNum = healthVal + protVal + attackVal + defenseVal + tierTenValor;
             totalValorDiv.textContent = totalValorNum.toLocaleString();
-            console.log(defenseVal);
+            console.log("Defense Gold: ", defenseGold);
+            console.log("Defense Valor: ", defenseVal);
         });
 
 
