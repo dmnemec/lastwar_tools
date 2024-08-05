@@ -1,4 +1,3 @@
-HTML
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,8 +17,22 @@ HTML
     <option value=9>9</option>
     <option value=10>10</option>
 </select>
+<div id="advProtResult"></div>
+<label for="healthLvl">Health Boost III Level</label>
+<select name="healthLvl" id="healthLvl">
+    <option value=1>1</option>
+    <option value=2>2</option>
+    <option value=3>3</option>
+    <option value=4>4</option>
+    <option value=5>5</option>
+    <option value=6>6</option>
+    <option value=7>7</option>
+    <option value=8>8</option>
+    <option value=9>9</option>
+    <option value=10>10</option>
+</select>
+<div id="healthResult"></div>
 
-<div id="result"></div>
 
     <script>
         const advancedProtectionGold = [
@@ -33,13 +46,21 @@ HTML
         const tierTenGold = 530;
 
         const advProtLvl = document.getElementById('adv-prot-lvl');
+        const hLvl = document.getElementById('healthLvl');
 
-        const resultDiv = document.getElementById('result');
+        const protResultDiv = document.getElementById('advProtResult');
 
         advProtLvl.addEventListener('change', (event) => {
             const protVal = sumRange(advancedProtectionGold, event.target.value, advancedProtectionGold.length-1);
-            resultDiv.textContent = protVal;
+            protResultDiv.textContent = protVal;
         });
+
+        hLvl.addEventListener('change', (event) => {
+            const protVal = sumRange(boostThreeGold, event.target.value, boostThreeGold.length-1);
+            healthResult.textContent = protVal;
+        });
+
+
         console.log(protVal)
 
         function sumRange(arr, start, end) {
