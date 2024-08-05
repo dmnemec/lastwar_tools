@@ -37,7 +37,7 @@ HTML
         const resultDiv = document.getElementById('result');
 
         advProtLvl.addEventListener('change', (event) => {
-            const protVal = sumRange(advancedProtectionGold, event.target.value, 9);
+            const protVal = sumRange(advancedProtectionGold, event.target.value, advancedProtectionGold.length-1);
             resultDiv.textContent = protVal;
         });
         console.log(protVal)
