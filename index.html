@@ -1,0 +1,53 @@
+HTML
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tier 10 Progress Calculator</title>
+</head>
+<body>
+    <label for="adv-prot-lvl">Advanced Protection Level</label>
+<select name="adv-prot-lvl" id="adv-prot-lvl">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+</select>
+
+    <script>
+        const advancedProtectionGold = [
+            0,0,0,157,157,219,219,285,285,400
+        ];
+
+        const boostThreeGold = [
+            92,157,157,219,219,285,285,400,400,560
+        ];
+
+        const tierTenGold = 530
+
+        const advProtLvl = document.getElementById('adv-prot-lvl')
+
+        advProtLvl.addEventListener('change', () => {
+            const protVal = sumRange(advancedProtectionGold, 9)
+        });
+        console.log(protVal)
+
+        function sumRange(arr, start, end) {
+            if (start < 0 || end >= arr.length || start > end) {
+                return 0; // Handle invalid input
+            }
+
+            let sum = 0;
+            for (let i = start; i <= end; i++) {
+                sum += arr[i];
+            }
+            return sum;
+        }
+    </script>
+</body>
+</html>
