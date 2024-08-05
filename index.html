@@ -19,6 +19,8 @@ HTML
     <option value="10">10</option>
 </select>
 
+<div id="result"></div>
+
     <script>
         const advancedProtectionGold = [
             0,0,0,157,157,219,219,285,285,400
@@ -28,12 +30,15 @@ HTML
             92,157,157,219,219,285,285,400,400,560
         ];
 
-        const tierTenGold = 530
+        const tierTenGold = 530;
 
-        const advProtLvl = document.getElementById('adv-prot-lvl')
+        const advProtLvl = document.getElementById('adv-prot-lvl');
+
+        const resultDiv = document.getElementById('result');
 
         advProtLvl.addEventListener('change', () => {
-            const protVal = sumRange(advancedProtectionGold, 9)
+            const protVal = sumRange(advancedProtectionGold, 9);
+            resultDiv.textContent = protVal;
         });
         console.log(protVal)
 
