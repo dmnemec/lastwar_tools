@@ -7,7 +7,12 @@
     crossorigin="anonymous"></script>
 </head>
 <body>
-    
+    <div>
+        <h1>Last War: Survival</h1>
+        <h2>Tier 10 Research Calculator</h2>
+        <p>Enter your current research levels, including those in progress, to see how many resources you still need to complete the remaining researches to unlock Tier X troops.</p>
+        <p class="disclaimer">Please note that these values may not be exact. There is conflicting information online for these researches, and I forgot to capture most of the values personally.</p>
+    </div>
     <div class="tech-tree">
         <div class="apNode tech-node">
             <label for="adv-prot-lvl">Advanced Protection Level</label>
@@ -97,36 +102,41 @@
 
     <script>
         const advancedProtectionGold = [
-            0,0,0,157000000,157000000,219000000,219000000,285000000,285000000,400000000
+            64600000,92300000,92300000,158000000,158000000,221000000,221000000,287000000,287000000,403000000
         ];
 
         const advancedProtectionValor = [
             1280,1440,1440,1600,1600,1800,1800,2000,2000,2000
         ];
 
+        const advancedProtectionFoodIron = [
+            21700000,31000000,31000000,53000000,53000000,74000000,74000000,96000000,96000000,134000000
+        ]
+
         const boostThreeGold = [
-            92300000,157000000,157000000,219000000,219000000,285000000,285000000,400000000,400000000,560000000
+            92300000,158000000,158000000,221000000,221000000,287000000,287000000,403000000,403000000,563000000
+        ];
+
+        const boostThreeFoodIron = [
+            31000000,53000000,53000000,74000000,74000000,96000000,96000000,134000000,134000000,175000000
         ];
 
         const boostThreeValor = [
             1440,1600,1600,1800,1800,2000,2000,2200,2200,2400
         ];
 
-        const tierTenGold = 530000000;
+        const tierTenGold = 563000000;
+        const tierTenFoodIron = 188000000
         const tierTenValor = 2400
 
         const advProtLvl = document.getElementById('adv-prot-lvl');
         const hLvl = document.getElementById('healthLvl');
         const aLvl = document.getElementById('attackLvl');
         const dLvl = document.getElementById('defenseLvl');
-        let protVal = 0;
-        let protGold = 0;
-        let healthVal = 0;
-        let healthGold = 0
-        let attackVal = 0;
-        let attackGold = 0;
-        let defenseVal = 0;
-        let defenseGold = 0;
+        let protVal, protGold, protFoodIron = 0;
+        let healthVal, healthGold, healthFoodIron = 0;
+        let attackVal, attackGold, attackFoodIron = 0;
+        let defenseVal, defenseGold, defenseFoodIron = 0;
 
         const protGoldResultDiv = document.getElementById('advProtResult');
         const healthGoldResultDiv = document.getElementById('healthBoostResultDiv');

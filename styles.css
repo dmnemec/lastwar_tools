@@ -3,13 +3,20 @@
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
+    background-color: darkcyan;
+    color: whitesmoke;
   }
-  
+
   h1 {
     color: blue;
     text-align: center;
   }
   
+  .disclaimer {
+    color: darkred;
+    font-weight: bold;
+  }
+
   p {
     font-size: 16px;
     line-height: 1.5;
