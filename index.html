@@ -91,6 +91,7 @@
             <div class="results-container">
                 <div id="defenseGoldResultDiv" class="select-div"></div>
                 <div id="defenseValorResultDiv" class="select-div"></div>
+                <div id="defenseFoodIronResultDiv" class="select-div"></div>
             </div>
         </div>
     </div>
@@ -139,6 +140,12 @@
         const hLvl = document.getElementById('healthLvl');
         const aLvl = document.getElementById('attackLvl');
         const dLvl = document.getElementById('defenseLvl');
+        
+        // Labels
+        const goldLabel = "Gold";
+        const valorLabel = "Valor";
+        const foodIronLabel = "Food and Iron";
+
         let protVal, protGold, protFoodIron = 0;
         let healthVal, healthGold, healthFoodIron = 0;
         let attackVal, attackGold, attackFoodIron = 0;
@@ -149,6 +156,7 @@
         const attackGoldResultDiv = document.getElementById('attackBoostResultDiv');
         const defenseGoldResultDiv = document.getElementById('defenseGoldResultDiv');
         const defenseValorResultDiv = document.getElementById('defenseValorResultDiv');
+        const defenseFoodIronResultDiv = document.getElementById('defenseFoodIronResultDiv');
         const totalGoldDiv = document.getElementById('totalGoldRemainingDiv');
         const totalValorDiv = document.getElementById('totalValorRemainingDiv');
         const totalFoodIronDiv = document.getElementById('totalFoodIronRemainingDiv');
@@ -213,9 +221,9 @@
         });
 
         dLvl.addEventListener('change', (event) => {
-            defenseGold = updateDiv(event.target.value, boostThreeGold, defenseGoldResultDiv);
-            defenseVal = updateDiv(event.target.value, boostThreeValor, defenseValorResultDiv);
-            defenseFoodIron = sumRange(boostThreeFoodIron, event.target.value, defenseFoodIron.length-1);
+            defenseGold = updateDiv(event.target.value, boostThreeGold, defenseGoldResultDiv, goldLabel);
+            defenseVal = updateDiv(event.target.value, boostThreeValor, defenseValorResultDiv, valorLabel);
+            defenseFoodIron = updateDiv(event.target.value, boostThreeFoodIron, defenseFoodIronResultDiv, foodIronLabel);
             updateTotals();
             console.log("Defense Gold: ", defenseGold);
             console.log("Defense Valor: ", defenseVal);
