@@ -88,7 +88,10 @@
                     <option value=10>10</option>
                 </select>
             </div>
-            <div id="defenseBoostResultDiv" class="select-div"></div>
+            <div class="results-container">
+                <div id="defenseGoldResultDiv" class="select-div"></div>
+                <div id="defenseValorResultDiv" class="select-div"></div>
+            </div>
         </div>
     </div>
 
@@ -97,6 +100,9 @@
     <br>
     <p>Total amount of valor still needed for tier 10 troop research</p>
     <div id="totalValorRemainingDiv"></div>
+    <br>
+    <p>Total amount of Food and Iron still needed for tier 10 troop research</p>
+    <div id="totalFoodIronRemainingDiv"></div>
 
 
 
@@ -141,9 +147,11 @@
         const protGoldResultDiv = document.getElementById('advProtResult');
         const healthGoldResultDiv = document.getElementById('healthBoostResultDiv');
         const attackGoldResultDiv = document.getElementById('attackBoostResultDiv');
-        const defenseGoldResultDiv = document.getElementById('defenseBoostResultDiv');
+        const defenseGoldResultDiv = document.getElementById('defenseGoldResultDiv');
+        const defenseValorResultDiv = document.getElementById('defenseValorResultDiv');
         const totalGoldDiv = document.getElementById('totalGoldRemainingDiv');
         const totalValorDiv = document.getElementById('totalValorRemainingDiv');
+        const totalFoodIronDiv = document.getElementById('totalFoodIronRemainingDiv');
 
         document.addEventListener('DOMContentLoaded', () => {
             protGold = sumRange(advancedProtectionGold, advProtLvl.value, advancedProtectionGold.length-1);
@@ -205,19 +213,33 @@
         });
 
         dLvl.addEventListener('change', (event) => {
-            defenseGold = sumRange(boostThreeGold, event.target.value, boostThreeGold.length-1);
-            defenseVal = sumRange(boostThreeValor, event.target.value, boostThreeValor.length-1);
-            defenseGoldResultDiv.textContent = defenseGold.toLocaleString();
-            let totalGoldNum = healthGold + protGold + attackGold + defenseGold + tierTenGold;
-            totalGoldDiv.textContent = totalGoldNum.toLocaleString();
-            let totalValorNum = healthVal + protVal + attackVal + defenseVal + tierTenValor;
-            totalValorDiv.textContent = totalValorNum.toLocaleString();
+            defenseGold = updateDiv(event.target.value, boostThreeGold, defenseGoldResultDiv);
+            defenseVal = updateDiv(event.target.value, boostThreeValor, defenseValorResultDiv);
+            defenseFoodIron = sumRange(boostThreeFoodIron, event.target.value, defenseFoodIron.length-1);
+            updateTotals();
             console.log("Defense Gold: ", defenseGold);
             console.log("Defense Valor: ", defenseVal);
+            console.log("Defense Food and Iron: ", defenseFoodIron);
         });
 
 
-        
+        function updateDiv(newValue, valuesArray, targetDiv, resource){
+            let totaledValues = sumRange(valuesArray, newValue, valuesArray.length-1);
+            targetDiv.textContent = totaledValues.toLocaleString() + " " + resource;
+            return totaledValues;
+        }
+
+        function updateTotals(){
+            // update total gold
+            let totalGoldNum = healthGold + protGold + attackGold + defenseGold + tierTenGold;
+            totalGoldDiv.textContent = totalGoldNum.toLocaleString();
+            // update total valor
+            let totalValorNum = healthVal + protVal + attackVal + defenseVal + tierTenValor;
+            totalValorDiv.textContent = totalValorNum.toLocaleString();
+            // update total food and iron TODO
+            let totalFoodIronNum = healthFoodIron + protFoodIron + attackFoodIron + defenseFoodIron + tierTenFoodIron;
+            totalFoodIronDiv.textContent = totalFoodIronNum.toLocaleString();
+        }
 
         function sumRange(arr, start, end) {
             if (start < 0 || end >= arr.length || start > end) {
