@@ -31,7 +31,11 @@
                     <option value=10>10</option>
                 </select>
             </div>
-            <div id="advProtResult" class="select-div"></div>
+            <div class="results-container">
+                <div id="advProtGoldResultDiv" class="select-div"></div>
+                <div id="advProtValorResultDiv" class="select-div"></div>
+                <div id="advProtFoodIronResultDiv" class="select-div"></div>
+            </div>
         </div>
         <div class="hpNode tech-node">
             <label for="healthLvl">Health Boost III Level</label>
@@ -50,7 +54,11 @@
                     <option value=10>10</option>
                 </select>
             </div>
-            <div id="healthBoostResultDiv" class="select-div"></div>
+            <div class="results-container">
+                <div id="healthGoldResultDiv" class="select-div"></div>
+                <div id="healthValorResultDiv" class="select-div"></div>
+                <div id="healthFoodIronResultDiv" class="select-div"></div>
+            </div>
         </div>
         <div class="attNode tech-node">
             <label for="attackLvl">Attack Boost III Level</label>
@@ -69,7 +77,11 @@
                     <option value=10>10</option>
                 </select>
             </div>
-            <div id="attackBoostResultDiv" class="select-div"></div>
+            <div class="results-container">
+                <div id="attackGoldResultDiv" class="select-div"></div>
+                <div id="attackValorResultDiv" class="select-div"></div>
+                <div id="attaclFoodIronResultDiv" class="select-div"></div>
+            </div>
         </div>
         <div class="defNode tech-node">
             <label for="defenseLvl">Defense Boost III Level</label>
@@ -151,73 +163,79 @@
         let attackVal, attackGold, attackFoodIron = 0;
         let defenseVal, defenseGold, defenseFoodIron = 0;
 
-        const protGoldResultDiv = document.getElementById('advProtResult');
-        const healthGoldResultDiv = document.getElementById('healthBoostResultDiv');
-        const attackGoldResultDiv = document.getElementById('attackBoostResultDiv');
+        // Advanced Protection Divs
+        const advProtGoldResultDiv = document.getElementById('advProtGoldResultDiv');
+        const advProtValorResultDiv = document.getElementById('advProtValorResultDiv');
+        const advProtFoodIronResultDiv = document.getElementById('advProtFoodIronResultDiv');
+
+        // Health Boost 3 Divs
+        const healthGoldResultDiv = document.getElementById('healthGoldResultDiv');
+        const healthValorResultDiv = document.getElementById('healthValorResultDiv');
+        const healthFoodIronResultDiv = document.getElementById('healthFoodIronResultDiv');
+
+        // Attack Boost 3 Divs
+        const attackGoldResultDiv = document.getElementById('attackGoldResultDiv');
+        const attackValorResultDiv = document.getElementById('attackValorResultDiv');
+        const attackFoodIronResultDiv = document.getElementById('attackFoodIronResultDiv');
+
+        // Defense Boost 3 Divs
         const defenseGoldResultDiv = document.getElementById('defenseGoldResultDiv');
         const defenseValorResultDiv = document.getElementById('defenseValorResultDiv');
         const defenseFoodIronResultDiv = document.getElementById('defenseFoodIronResultDiv');
+
+        // Totals Divs
         const totalGoldDiv = document.getElementById('totalGoldRemainingDiv');
         const totalValorDiv = document.getElementById('totalValorRemainingDiv');
         const totalFoodIronDiv = document.getElementById('totalFoodIronRemainingDiv');
 
         document.addEventListener('DOMContentLoaded', () => {
-            protGold = sumRange(advancedProtectionGold, advProtLvl.value, advancedProtectionGold.length-1);
-            protVal = sumRange(advancedProtectionValor, advProtLvl.value, advancedProtectionValor.length-1);
-            protGoldResultDiv.textContent = protGold.toLocaleString();
+            protGold = updateDiv(advProtLvl.value, advancedProtectionGold, advProtGoldResultDiv, goldLabel);
+            protVal = updateDiv(advProtLvl.value, advancedProtectionValor, advProtValorResultDiv, valorLabel);
+            protFoodIron = updateDiv(advProtLvl.value, advancedProtectionFoodIron, advProtFoodIronResultDiv, foodIronLabel);
 
-            healthGold = sumRange(boostThreeGold, hLvl.value, boostThreeGold.length-1);
-            healthVal = sumRange(boostThreeValor, hLvl.value, boostThreeValor.length-1);
-            healthGoldResultDiv.textContent = healthGold.toLocaleString();
+            healthGold = updateDiv(hLvl.value, boostThreeGold, healthGoldResultDiv, goldLabel);
+            healthVal = updateDiv(hLvl.value, boostThreeValor, healthValorResultDiv, valorLabel);
+            healthFoodIron = updateDiv(hLvl.value, boostThreeFoodIron, healthFoodIronResultDiv, foodIronLabel);
 
-            attackGold = sumRange(boostThreeGold, aLvl.value, boostThreeGold.length-1);
-            attackVal = sumRange(boostThreeValor, aLvl.value, boostThreeValor.length-1);
-            attackGoldResultDiv.textContent = attackGold.toLocaleString();
+            attackGold = updateDiv(aLvl.value, boostThreeGold, attackGoldResultDiv, goldLabel);
+            attackVal = updateDiv(aLvl.value, boostThreeValor, attackValorResultDiv, valorLabel);
+            attackFoodIron = updateDiv(aLvl.value, boostThreeFoodIron, attackFoodIronResultDiv, foodIronLabel);
             
-            defenseGold = sumRange(boostThreeGold, dLvl.value, boostThreeGold.length-1);
-            defenseVal = sumRange(boostThreeValor, dLvl.value, boostThreeValor.length-1);
-            defenseGoldResultDiv.textContent = defenseGold.toLocaleString();
+            defenseGold = updateDiv(dLvl.value, boostThreeGold, defenseGoldResultDiv, goldLabel);
+            defenseVal = updateDiv(dLvl.value, boostThreeValor, defenseValorResultDiv, valorLabel);
+            defenseFoodIron = updateDiv(dLvl.value, boostThreeFoodIron, defenseFoodIronResultDiv, foodIronLabel);
 
-            let totalGoldNum = healthGold + protGold + attackGold + defenseGold + tierTenGold;
-            totalGoldDiv.textContent = totalGoldNum.toLocaleString();
-            let totalValorNum = healthVal + protVal + attackVal + defenseVal + tierTenValor;
-            totalValorDiv.textContent = totalValorNum.toLocaleString();
+            updateTotals();
         });
 
         advProtLvl.addEventListener('change', (event) => {
-            protGold = sumRange(advancedProtectionGold, event.target.value, advancedProtectionGold.length-1);
-            protVal = sumRange(advancedProtectionValor, event.target.value, advancedProtectionValor.length-1);
-            protGoldResultDiv.textContent = protGold.toLocaleString();
-            let totalGoldNum = healthGold + protGold + attackGold + defenseGold + tierTenGold;
-            totalGoldDiv.textContent = totalGoldNum.toLocaleString();
-            let totalValorNum = healthVal + protVal + attackVal + defenseVal + tierTenValor;
-            totalValorDiv.textContent = totalValorNum.toLocaleString();
+            protGold = updateDiv(event.target.value, advancedProtectionGold, advProtGoldResultDiv, goldLabel);
+            protVal = updateDiv(event.target.value, advancedProtectionValor, advProtValorResultDiv, valorLabel);
+            protFoodIron = updateDiv(event.target.value, advancedProtectionFoodIron, advProtFoodIronResultDiv, foodIronLabel);
+            updateTotals();
             console.log("Protection Gold: ", protGold);
             console.log("Protection Valor: ", protVal);
+            console.log("Advanced Protection Food and Iron: ", protFoodIron);
         });
 
         hLvl.addEventListener('change', (event) => {
-            healthGold = sumRange(boostThreeGold, event.target.value, boostThreeGold.length-1);
-            healthVal = sumRange(boostThreeValor, event.target.value, boostThreeValor.length-1);
-            healthGoldResultDiv.textContent = healthGold.toLocaleString();
-            let totalGoldNum = healthGold + protGold + attackGold + defenseGold + tierTenGold;
-            totalGoldDiv.textContent = totalGoldNum.toLocaleString();
-            let totalValorNum = healthVal + protVal + attackVal + defenseVal + tierTenValor;
-            totalValorDiv.textContent = totalValorNum.toLocaleString();
+            healthGold = updateDiv(event.target.value, boostThreeGold, healthGoldResultDiv, goldLabel);
+            healthVal = updateDiv(event.target.value, boostThreeValor, healthValorResultDiv, valorLabel);
+            healthFoodIron = updateDiv(event.target.value, boostThreeFoodIron, healthFoodIronResultDiv, foodIronLabel);
+            updateTotals();
             console.log("Health Gold: ", healthGold);
-            console.log("Health Valor: ", healthGold);
+            console.log("Health Valor: ", healthVal);
+            console.log("Health Food and Iron: ", healthFoodIron)
         });
 
         aLvl.addEventListener('change', (event) => {
-            attackGold = sumRange(boostThreeGold, event.target.value, boostThreeGold.length-1);
-            attackVal = sumRange(boostThreeValor, event.target.value, boostThreeValor.length-1);
-            attackGoldResultDiv.textContent = attackGold.toLocaleString();
-            let totalGoldNum = healthGold + protGold + attackGold + defenseGold + tierTenGold;
-            totalGoldDiv.textContent = totalGoldNum.toLocaleString();
-            let totalValorNum = healthVal + protVal + attackVal + defenseVal + tierTenValor;
-            totalValorDiv.textContent = totalValorNum.toLocaleString();
+            attackGold = updateDiv(event.target.value, boostThreeGold, attackGoldResultDiv, goldLabel);
+            attackVal = updateDiv(event.target.value, boostThreeValor, attackValorResultDiv, valorLabel);
+            attackFoodIron = updateDiv(event.target.value, boostThreeFoodIron, attackFoodIronResultDiv, foodIronLabel);
+            updateTotals();
             console.log("Attack Gold: ", attackGold);
             console.log("Attack Valor: ", attackVal);
+            console.log("Attack Food and Iron: ", attackFoodIron)
         });
 
         dLvl.addEventListener('change', (event) => {
